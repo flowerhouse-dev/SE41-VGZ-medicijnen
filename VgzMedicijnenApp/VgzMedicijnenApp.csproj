@@ -93,6 +93,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Fonts\texgyreheros-bold.otf" />
+    <Resource Include="Resources\Fonts\texgyreheros-bolditalic.otf" />
+    <Resource Include="Resources\Fonts\texgyreheros-italic.otf" />
+    <Resource Include="Resources\Fonts\texgyreheros-regular.otf" />
+    <Resource Include="Resources\Fonts\texgyreheroscn-bold.otf" />
+    <Resource Include="Resources\Fonts\texgyreheroscn-bolditalic.otf" />
+    <Resource Include="Resources\Fonts\texgyreheroscn-italic.otf" />
+    <Resource Include="Resources\Fonts\texgyreheroscn-regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
