@@ -18,5 +18,10 @@ namespace VgzMedicijnenApp.Domain
             Dose = dose;
             Instructions = instructions;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

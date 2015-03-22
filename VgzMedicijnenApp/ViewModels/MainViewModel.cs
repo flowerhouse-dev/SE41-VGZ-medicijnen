@@ -1,9 +1,10 @@
 ﻿using VgzMedicijnenApp.Controllers;
+using VgzMedicijnenApp.Domain;
 using VgzMedicijnenApp.Utility;
 
 namespace VgzMedicijnenApp.ViewModels
 {
-    class MainViewModel : NotifyBase
+    public class MainViewModel : NotifyBase
     {
         private MainController _controller;
         public MainController Controller

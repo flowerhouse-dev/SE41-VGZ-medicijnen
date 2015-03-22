@@ -1,11 +1,13 @@
-﻿using System.CodeDom;
+﻿using System;
+using System.CodeDom;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 using VgzMedicijnenApp.Domain;
 using VgzMedicijnenApp.Utility;
 
 namespace VgzMedicijnenApp.Controllers
 {
-    class MainController : NotifyBase
+    public class MainController : NotifyBase
     {
         private ObservableCollection<Notification> _notifications;
         public ObservableCollection<Notification> Notifications
@@ -29,9 +31,26 @@ namespace VgzMedicijnenApp.Controllers
             }
         }
 
+        public ObservableCollection<Notification> NotificationsToday
+        {
+            get
+            {
+                ObservableCollection<Notification> notifications = new ObservableCollection<Notification>();
+                foreach (Notification n in Notifications)
+                {
+                    if (n.Time.Day == DateTime.Now.Day)
+                    {
+                        notifications.Add(n);
+                    }
+                }
+                return notifications;
+            }
+        }
+
         public MainController()
         {
             Notifications = new ObservableCollection<Notification>();
+            Drugs = new ObservableCollection<Drug>();
         }
     }
 }
