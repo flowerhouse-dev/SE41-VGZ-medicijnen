@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace VgzMedicijnenApp.Views
 {
     /// <summary>
-    /// Interaction logic for Overview.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class Overview : Window
+    public partial class MainView : Window
     {
-        public Overview()
+        public MainView()
         {
             InitializeComponent();
         }
