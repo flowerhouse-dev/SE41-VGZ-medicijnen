@@ -14,15 +14,15 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="64"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="49"/>
             </Grid.RowDefinitions>
 
             <!--Overview Window-->
-            <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding ElementName=OverviewButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding IsOverviewSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -34,7 +34,7 @@
                                    RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
                         </StackPanel>
                         <Grid Width="103" Height="20" HorizontalAlignment="Center" Margin="3">
-                            <TextBlock Text="14:29" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="16:20" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
                         </Grid>
                         <Grid Width="103" Height="20" HorizontalAlignment="Right" Margin="3">
                             <Image Height="10" Source="../Resources/Images/Lightning Bolt Filled-25.png" HorizontalAlignment="Right"
@@ -62,11 +62,100 @@
                                    RenderOptions.EdgeMode="Aliased"></Image>
                         </Button>
                     </Grid>
+
+                    <Grid Background="{StaticResource ColorGray}">
+                        <Grid.Resources>
+                            <!-- Left Button Template -->
+                            <ControlTemplate x:Key="ToggleButtonLeft" TargetType="{x:Type ToggleButton}">
+                                <Border
+                                    Name="Border"
+                                    Background="{StaticResource ColorGray}"
+                                    BorderBrush="{StaticResource ColorVgzBlueGreen}"
+                                    BorderThickness="1"
+                                    CornerRadius="5,0,0,5">
+                                    <ContentPresenter Name="ContentPresenter"
+                                        HorizontalAlignment="Center"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}"
+                                        TextBlock.Foreground="White"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="false">
+                                        <Setter TargetName="ContentPresenter" Property="TextBlock.Foreground" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+
+                            <!-- Middle Button(s) Template -->
+                            <ControlTemplate x:Key="ToggleButtonMid" TargetType="{x:Type ToggleButton}">
+                                <Border
+                                    Name="Border"
+                                    Background="{StaticResource ColorGray}"
+                                    BorderBrush="{StaticResource ColorVgzBlueGreen}"
+                                    BorderThickness="0,1,0,1"
+                                    CornerRadius="0" >
+                                    <ContentPresenter Name="ContentPresenter"
+                                        HorizontalAlignment="Center"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}"
+                                        TextBlock.Foreground="White"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="false">
+                                        <Setter TargetName="ContentPresenter" Property="TextBlock.Foreground" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+
+                            <!-- Right Button Template -->
+                            <ControlTemplate x:Key="ToggleButtonRight" TargetType="{x:Type ToggleButton}">
+                                <Border
+                                    Name="Border"
+                                    Background="{StaticResource ColorGray}"
+                                    BorderBrush="{StaticResource ColorVgzBlueGreen}"
+                                    BorderThickness="1"
+                                    CornerRadius="0, 5, 5, 0" >
+                                <ContentPresenter Name="ContentPresenter"
+                                        HorizontalAlignment="Center"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}"
+                                        TextBlock.Foreground="White"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="false">
+                                        <Setter TargetName="ContentPresenter" Property="TextBlock.Foreground" Value="{StaticResource ColorVgzBlueGreen}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Grid.Resources>
+
+                        <!-- Example Usage -->
+                        <Grid HorizontalAlignment="Center" Margin="0,0,0,10">
+                            <StackPanel Height="25" Orientation="Horizontal" Margin="5">
+                                <RadioButton Content="Day" GroupName="View" Padding="2" Width="90" Template="{DynamicResource ToggleButtonLeft}" IsChecked="True"/>
+                                <RadioButton Content="Week" GroupName="View" Padding="2" Width="90" Template="{DynamicResource ToggleButtonMid}"/>
+                                <RadioButton Content="Month" GroupName="View" Padding="2" Width="90" Template="{DynamicResource ToggleButtonRight}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
                     <Rectangle Height="1" Fill="{StaticResource ColorBorder}"></Rectangle>
                 </StackPanel>
 
                 <Grid Grid.Row="1">
-                    <ListView Name="NotificationsListView" ItemsSource="{Binding Source={StaticResource GroupedNotifications}}"
+                    <ListView Name="NotificationsListView" ItemsSource="{Binding Source={StaticResource GroupedNotifications}, UpdateSourceTrigger=PropertyChanged}"
                               BorderThickness="0">
                         <ItemsControl.GroupStyle>
 
@@ -76,7 +165,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                    <GroupBox Header="{Binding Name}">
+                                                    <GroupBox Header="{Binding Name}" BorderThickness="0" FontWeight="Bold">
                                                         <ItemsPresenter />
                                                     </GroupBox>
                                                 </ControlTemplate>
@@ -89,7 +178,11 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Drug.Name}" />
+                                <Grid Width="280" Height="30" Margin="0,8,0,0">
+                                    <TextBlock Text="{Binding Drug.Name}" HorizontalAlignment="Left" FontWeight="Normal"/>
+                                    <TextBlock Text="{Binding SimpleTime}" HorizontalAlignment="Right" FontWeight="Normal" />
+                                    <Rectangle Height="1" Fill="{StaticResource ColorSeperator}" Margin="0,25,0,0"/>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ListView>
@@ -97,137 +190,7 @@
             </Grid>
             <!--/Overview Window-->
 
-            <!--Drugs Window-->
-            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=DrugsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0">
-                    <StackPanel Background="#FF4CD964" Height="20">
-
-                    </StackPanel>
-                    <Grid Background="#FF4CD964" Height="44">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="1" Text="Drugs" Foreground="White" 
-                                   FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontSize="16"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-
-                        <Button Grid.Column="2" Content="+" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0"></Button>
-                    </Grid>
-                </StackPanel>
-
-                <Grid Grid.Row="1">
-
-                </Grid>
-            </Grid>-->
-            <!--/Drugs Window-->
-
-            <!--Notifications Window-->
-            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=NotificationsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0">
-                    <StackPanel Background="#FF4CD964" Height="20">
-
-                    </StackPanel>
-                    <Grid Background="#FF4CD964" Height="44">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="1" Text="Notifications" Foreground="White" 
-                                   FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontSize="16"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-
-                        <Button Grid.Column="2" Content="+" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0"></Button>
-                    </Grid>
-                </StackPanel>
-
-                <Grid Grid.Row="1">
-
-                </Grid>
-            </Grid>-->
-            <!--/Notifications Window-->
-
-            <!--Feeling Window-->
-            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=FeelingButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0">
-                    <StackPanel Background="#FF4CD964" Height="20">
-
-                    </StackPanel>
-                    <Grid Background="#FF4CD964" Height="44">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="1" Text="Feeling" Foreground="White" 
-                                   FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontSize="16"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-
-                        <Button Grid.Column="2" Content="+" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0"></Button>
-                    </Grid>
-                </StackPanel>
-
-                <Grid Grid.Row="1">
-
-                </Grid>
-            </Grid>-->
-            <!--/Feeling Window-->
-
-            <!--Report Window-->
-            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=ReportButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0">
-                    <StackPanel Background="#FF4CD964" Height="20">
-
-                    </StackPanel>
-                    <Grid Background="#FF4CD964" Height="44">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="1" Text="Report" Foreground="White" 
-                                   FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontSize="16"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
-
-                        <Button Grid.Column="2" Content="+" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0"></Button>
-                    </Grid>
-                </StackPanel>
-
-                <Grid Grid.Row="1">
-
-                </Grid>
-            </Grid>-->
-            <!--/Report Window-->
+            
             
             <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Height="49">
                 <Rectangle Fill="#FFB2B2B2" Height="1"></Rectangle>
@@ -240,16 +203,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <RadioButton Grid.Column="0" Name="OverviewButton"
-                            Content="OverviewView" IsChecked="True"/>
-                    <RadioButton Grid.Column="1" Name="DrugsButton"
-                            Content="Drugs"/>
-                    <RadioButton Grid.Column="2" Name="NotificationsButton"
-                            Content="Notifications"/>
-                    <RadioButton Grid.Column="3" Name="FeelingButton"
-                            Content="Feeling"/>
-                    <RadioButton Grid.Column="4" Name="ReportButton"
-                            Content="Report"/>
+                    <CheckBox Style="{StaticResource StyleCheckBoxOverview}" Grid.Column="0" IsChecked="{Binding IsOverviewSelected}" HorizontalAlignment="Center"/>
+                    <CheckBox Style="{StaticResource StyleCheckBoxDrugs}" Grid.Column="1" IsChecked="{Binding IsDrugsSelected}" HorizontalAlignment="Center"/>
+                    <CheckBox Style="{StaticResource StyleCheckBoxNotifications}" Grid.Column="2" IsChecked="{Binding IsNotificationsSelected}" HorizontalAlignment="Center"/>
+                    <CheckBox Style="{StaticResource StyleCheckBoxFeeling}" Grid.Column="3" IsChecked="{Binding IsFeelingSelected}" HorizontalAlignment="Center"/>
+                    <CheckBox Style="{StaticResource StyleCheckBoxReport}" Grid.Column="4" IsChecked="{Binding IsReportSelected}" HorizontalAlignment="Center"/>
                 </Grid>
             </StackPanel>
         </Grid>

@@ -53,7 +53,7 @@ namespace VgzMedicijnenApp.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewAddNotification viewAddNotification = new ViewAddNotification(_viewModel);
+            ViewAddNotificationFull viewAddNotification = new ViewAddNotificationFull(_viewModel);
             Action showViewAddNotification = () => viewAddNotification.Show();
             this.Dispatcher.BeginInvoke(showViewAddNotification);
         }

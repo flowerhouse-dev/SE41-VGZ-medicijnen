@@ -16,6 +16,7 @@ namespace VgzMedicijnenApp.Controllers
             set
             {
                 _notifications = value;
+                NotificationsToday = value;
                 OnPropertyChanged();
             }
         }
@@ -31,19 +32,31 @@ namespace VgzMedicijnenApp.Controllers
             }
         }
 
+        public ObservableCollection<Notification> _notificationsToday;
         public ObservableCollection<Notification> NotificationsToday
         {
+            set
+            {
+                _notificationsToday = value;
+                OnPropertyChanged();
+            }
             get
             {
-                ObservableCollection<Notification> notifications = new ObservableCollection<Notification>();
-                foreach (Notification n in Notifications)
+                try
                 {
-                    if (n.Time.Day == DateTime.Now.Day)
+                    foreach (Notification n in Notifications)
                     {
-                        notifications.Add(n);
+                        if (n.Time.Day == DateTime.Now.Day)
+                        {
+                            _notificationsToday.Add(n);
+                        }
                     }
                 }
-                return notifications;
+                catch
+                {
+                    //
+                }
+                return _notificationsToday;
             }
         }
 

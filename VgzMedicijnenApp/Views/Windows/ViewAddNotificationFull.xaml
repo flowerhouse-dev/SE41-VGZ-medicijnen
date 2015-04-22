@@ -1,0 +1,95 @@
+﻿<Window x:Class="VgzMedicijnenApp.Views.Windows.ViewAddNotificationFull"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="OverviewView" Height="568" Width="320" ResizeMode="NoResize">
+    <Window.Resources>
+        <CollectionViewSource x:Key="GroupedNotifications" Source="{Binding Controller.NotificationsToday}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="PartOfDay" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="49"/>
+            </Grid.RowDefinitions>
+
+            <!--Overview Window-->
+            <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding IsOverviewSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Grid Background="{StaticResource ColorGray}" >
+                        <StackPanel Width="103" Orientation="Horizontal" HorizontalAlignment="Left" Margin="3">
+                            <TextBlock Text="Vodafone" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <Image Height="15" Source="../../Resources/Images/WiFi Filled-25.png"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                        </StackPanel>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Center" Margin="3">
+                            <TextBlock Text="16:20" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Right" Margin="3">
+                            <Image Height="10" Source="../../Resources/Images/Lightning Bolt Filled-25.png" HorizontalAlignment="Right"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                            <Image Height="15" Source="../../Resources/Images/High Battery-25.png" HorizontalAlignment="Right" Margin="3,0,10,0"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                            <TextBlock Text="80 %" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" Margin="3,0,30,0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Background="{StaticResource ColorGray}" Height="43">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Width="44" HorizontalAlignment="Left"
+                                Margin="8,0,8,0" Click="Button_Click"
+                                Style="{StaticResource StyleButtonUi}">
+                            <Image Width="25" Height="25" Source="../../Resources/Images/Back-25.png"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                        </Button>
+
+                        <TextBlock Grid.Column="1" Text="Add Notification" Style="{StaticResource StyleTitle}"/>
+
+                        <!--<Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
+                                Margin="0,0,8,0" Click="Button_Click"
+                                Style="{StaticResource StyleButtonUi}">
+                            <Image Width="25" Height="25" Source="../Resources/Images/Plus-25.png"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                        </Button>-->
+                    </Grid>
+
+                    <Rectangle Height="1" Fill="{StaticResource ColorBorder}"></Rectangle>
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Margin="8">
+                        <Rectangle Fill="#FFB2B2B2" Height="1"/>
+                        <ComboBox Name="ComboBoxDrugs" Margin="0,8,0,0" ItemsSource="{Binding Controller.Drugs}" />
+                        <xctk:DateTimePicker Name="DateTimePicker" Margin="0,8,0,0"/>
+                        <ComboBox Margin="0,8,0,0" >
+                            <ComboBoxItem Name="cbi1">Daily</ComboBoxItem>
+                            <ComboBoxItem Name="cbi2">Weekly</ComboBoxItem>
+                            <ComboBoxItem Name="cbi3">Monthly</ComboBoxItem>
+                        </ComboBox>
+                        <Button Margin="0,8,0,0" Content="Add Notification" Width="120" HorizontalAlignment="Right" Click="ButtonSave_Click"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <!--/Overview Window-->
+        </Grid>
+    </Grid>
+</Window>
