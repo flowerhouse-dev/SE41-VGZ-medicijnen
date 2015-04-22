@@ -27,27 +27,47 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0">
-                    <StackPanel Background="#FF4CD964" Height="20">
-
-                    </StackPanel>
-                    <Grid Background="#FF4CD964" Height="44">
+                    <Grid Background="{StaticResource ColorGray}" >
+                        <StackPanel Width="103" Orientation="Horizontal" HorizontalAlignment="Left" Margin="3">
+                            <TextBlock Text="Vodafone" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <Image Height="15" Source="../Resources/Images/WiFi Filled-25.png"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                        </StackPanel>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Center" Margin="3">
+                            <TextBlock Text="14:29" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Right" Margin="3">
+                            <Image Height="10" Source="../Resources/Images/Lightning Bolt Filled-25.png" HorizontalAlignment="Right"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                            <Image Height="15" Source="../Resources/Images/High Battery-25.png" HorizontalAlignment="Right" Margin="3,0,10,0"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                            <TextBlock Text="80 %" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" Margin="3,0,30,0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Background="{StaticResource ColorGray}" Height="43">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" Text="Overview" Foreground="White" 
-                                   FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontSize="16"
-                                   TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="Overview" Style="{StaticResource StyleTitle}"/>
 
-                        <Button Grid.Column="2" Content="+" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0" Click="Button_Click"></Button>
+                        <Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
+                                Margin="0,0,8,0" Click="Button_Click"
+                                Style="{StaticResource StyleButtonUi}">
+                            <Image Width="25" Height="25" Source="../Resources/Images/Plus-25.png"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                        </Button>
                     </Grid>
+                    <Rectangle Height="1" Fill="{StaticResource ColorBorder}"></Rectangle>
                 </StackPanel>
 
                 <Grid Grid.Row="1">
-                    <ListView Name="NotificationsListView" ItemsSource="{Binding Source={StaticResource GroupedNotifications}}">
+                    <ListView Name="NotificationsListView" ItemsSource="{Binding Source={StaticResource GroupedNotifications}}"
+                              BorderThickness="0">
                         <ItemsControl.GroupStyle>
 
                             <GroupStyle>
@@ -75,9 +95,10 @@
                     </ListView>
                 </Grid>
             </Grid>
+            <!--/Overview Window-->
 
             <!--Drugs Window-->
-            <Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=DrugsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=DrugsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/>
@@ -106,10 +127,11 @@
                 <Grid Grid.Row="1">
 
                 </Grid>
-            </Grid>
+            </Grid>-->
+            <!--/Drugs Window-->
 
             <!--Notifications Window-->
-            <Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=NotificationsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=NotificationsButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/>
@@ -138,10 +160,11 @@
                 <Grid Grid.Row="1">
 
                 </Grid>
-            </Grid>
+            </Grid>-->
+            <!--/Notifications Window-->
 
             <!--Feeling Window-->
-            <Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=FeelingButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=FeelingButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/>
@@ -170,10 +193,11 @@
                 <Grid Grid.Row="1">
 
                 </Grid>
-            </Grid>
+            </Grid>-->
+            <!--/Feeling Window-->
 
             <!--Report Window-->
-            <Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=ReportButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--<Grid Grid.Row="0" Grid.RowSpan="2"  Visibility="{Binding ElementName=ReportButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/>
@@ -202,8 +226,9 @@
                 <Grid Grid.Row="1">
 
                 </Grid>
-            </Grid>
-
+            </Grid>-->
+            <!--/Report Window-->
+            
             <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Height="49">
                 <Rectangle Fill="#FFB2B2B2" Height="1"></Rectangle>
                 <Grid Background="#FFF9F9F9" Height="48">
