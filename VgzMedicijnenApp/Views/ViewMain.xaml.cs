@@ -77,5 +77,10 @@ namespace VgzMedicijnenApp.Views
             Action showViewAddFeeling = () => viewAddFeeling.Show();
             Dispatcher.BeginInvoke(showViewAddFeeling);
         }
+
+        private void ExportReport_Click(object sender, RoutedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }

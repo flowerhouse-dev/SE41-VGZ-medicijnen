@@ -13,6 +13,11 @@
                 <PropertyGroupDescription PropertyName="Time.DayOfWeek" />
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
+        <CollectionViewSource x:Key="Reports" Source="{Binding Controller.Reports}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Time.DayOfWeek" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
@@ -388,7 +393,6 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Background="White">
-                    <TextBox Text="Search"></TextBox>
                     <ListView Name="FeelingListView" ItemsSource="{Binding Controller.Feelings, UpdateSourceTrigger=PropertyChanged}"
                               BorderThickness="0" Height="390">
                         <ItemsControl.ItemTemplate>
@@ -418,6 +422,114 @@
                 </StackPanel>
             </Grid>
             <!--/Feeling Window-->
+
+            <!--Report Window-->
+            <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding IsReportSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Grid Background="{StaticResource ColorGray}" >
+                        <StackPanel Width="103" Orientation="Horizontal" HorizontalAlignment="Left" Margin="3">
+                            <TextBlock Text="Vodafone" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <Image Height="15" Source="../Resources/Images/WiFi Filled-25.png"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                        </StackPanel>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Center" Margin="3">
+                            <TextBlock Text="16:20" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Right" Margin="3">
+                            <Image Height="10" Source="../Resources/Images/Lightning Bolt Filled-25.png" HorizontalAlignment="Right"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                            <Image Height="15" Source="../Resources/Images/High Battery-25.png" HorizontalAlignment="Right" Margin="3,0,10,0"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                            <TextBlock Text="80 %" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" Margin="3,0,30,0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Background="{StaticResource ColorGray}" Height="43">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1" Text="Report" Style="{StaticResource StyleTitle}"/>
+
+                        <Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
+                                Margin="0,0,8,0" Click="ExportReport_Click"
+                                Style="{StaticResource StyleButtonUi}">
+                            <Image Width="25" Height="25" Source="../Resources/Images/Upload-25.png"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                        </Button>
+                    </Grid>
+                    <Rectangle Height="1" Fill="{StaticResource ColorBorder}"></Rectangle>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Background="White">
+                    <ListView Name="ReportListView" ItemsSource="{Binding Source={StaticResource Reports}, UpdateSourceTrigger=PropertyChanged}"
+                              BorderThickness="0">
+                        <ItemsControl.GroupStyle>
+
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <GroupBox Header="{Binding Name}" BorderThickness="0" FontWeight="Bold">
+                                                        <ItemsPresenter />
+                                                    </GroupBox>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ItemsControl.GroupStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="280" Height="30" Margin="0,8,0,0">
+                                    <TextBlock Text="{Binding Drug.Name}" HorizontalAlignment="Left" FontWeight="Normal"/>
+                                    <TextBlock Text="{Binding SimpleTime}" HorizontalAlignment="Right" FontWeight="Normal" />
+                                    <Rectangle Height="1" Fill="{StaticResource ColorSeperator}" Margin="0,25,0,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListView>
+                    <!--<ListView Name="ReportListView" ItemsSource="{Binding Controller.Feelings, UpdateSourceTrigger=PropertyChanged}"
+                              BorderThickness="0" Height="390">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="280" Height="65" Margin="0,8,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding Image}" VerticalAlignment="Top" Margin="0,2,0,0" Width="20" Height="20"></Image>
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0">
+                                        <Grid>
+                                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Left" FontWeight="Bold" />
+                                            <TextBlock Text="{Binding SimpleTime}" HorizontalAlignment="Right" FontWeight="Normal" />
+                                        </Grid>
+
+                                        <TextBlock Text="{Binding Emotion}" HorizontalAlignment="Left" FontWeight="Normal" Height="20"/>
+                                        <TextBlock Text="{Binding Body}" HorizontalAlignment="Left" FontWeight="Normal" Height="20" Foreground="Gray"/>
+                                        <Rectangle Height="1" Fill="{StaticResource ColorSeperator}" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListView>-->
+                </StackPanel>
+            </Grid>
+            <!--/Report Window-->
 
             <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Height="49">
                 <Rectangle Fill="#FFB2B2B2" Height="1"></Rectangle>

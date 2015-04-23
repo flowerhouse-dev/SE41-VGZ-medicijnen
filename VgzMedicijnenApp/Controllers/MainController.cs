@@ -71,6 +71,17 @@ namespace VgzMedicijnenApp.Controllers
             }
         }
 
+        private ObservableCollection<Report> _reports;
+        public ObservableCollection<Report> Reports
+        {
+            get { return _reports; }
+            set
+            {
+                _reports = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MainController()
         {
             Notifications = new ObservableCollection<Notification>();
