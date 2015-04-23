@@ -190,8 +190,69 @@
             </Grid>
             <!--/Overview Window-->
 
-            
-            
+            <!--Drugs Window-->
+            <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding IsDrugsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Grid Background="{StaticResource ColorGray}" >
+                        <StackPanel Width="103" Orientation="Horizontal" HorizontalAlignment="Left" Margin="3">
+                            <TextBlock Text="Vodafone" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <Image Height="15" Source="../Resources/Images/WiFi Filled-25.png"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                        </StackPanel>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Center" Margin="3">
+                            <TextBlock Text="16:20" Width="32" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Width="103" Height="20" HorizontalAlignment="Right" Margin="3">
+                            <Image Height="10" Source="../Resources/Images/Lightning Bolt Filled-25.png" HorizontalAlignment="Right"
+                                   RenderOptions.EdgeMode="Aliased" Margin="3,0,0,0"></Image>
+                            <Image Height="15" Source="../Resources/Images/High Battery-25.png" HorizontalAlignment="Right" Margin="3,0,10,0"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                            <TextBlock Text="80 %" FontFamily="/;component/Resources/Fonts/#TeX Gyre Heros" VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" Margin="3,0,30,0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Background="{StaticResource ColorGray}" Height="43">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1" Text="Drugs" Style="{StaticResource StyleTitle}"/>
+
+                        <Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
+                                Margin="0,0,8,0" Click="AddDrug_Click"
+                                Style="{StaticResource StyleButtonUi}">
+                            <Image Width="25" Height="25" Source="../Resources/Images/Plus-25.png"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   RenderOptions.EdgeMode="Aliased"></Image>
+                        </Button>
+                    </Grid>
+                    <Rectangle Height="1" Fill="{StaticResource ColorBorder}"></Rectangle>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Background="White">
+                    <TextBox Text="Search"></TextBox>
+                    <ListView Name="DrugsListView" ItemsSource="{Binding Controller.Drugs, UpdateSourceTrigger=PropertyChanged}"
+                              BorderThickness="0" Height="390">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="280" Height="30" Margin="10,8,0,0">
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" FontWeight="Normal"/>
+                                    <Rectangle Height="1" Fill="{StaticResource ColorSeperator}" Margin="0,25,0,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+            <!--/Drugs Window-->
+
             <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Height="49">
                 <Rectangle Fill="#FFB2B2B2" Height="1"></Rectangle>
                 <Grid Background="#FFF9F9F9" Height="48">

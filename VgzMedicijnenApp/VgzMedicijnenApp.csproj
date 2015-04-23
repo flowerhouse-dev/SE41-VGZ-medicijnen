@@ -71,8 +71,12 @@
     <Compile Include="Utility\Command.cs" />
     <Compile Include="Utility\NotifyBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ViewModelAddDrug.cs" />
     <Compile Include="Views\ViewMain.xaml.cs">
       <DependentUpon>ViewMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ViewAddDrug.xaml.cs">
+      <DependentUpon>ViewAddDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ViewAddNotification.xaml.cs">
       <DependentUpon>ViewAddNotification.xaml</DependentUpon>
@@ -152,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ViewAddDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
