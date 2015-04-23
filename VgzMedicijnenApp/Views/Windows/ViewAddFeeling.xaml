@@ -1,16 +1,8 @@
-﻿<Window x:Class="VgzMedicijnenApp.Views.Windows.ViewAddNotificationFull"
+﻿<Window x:Class="VgzMedicijnenApp.Views.Windows.ViewAddFeeling"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="VGZ medicijnen app" Height="568" Width="320" ResizeMode="NoResize">
-    <Window.Resources>
-        <!--<CollectionViewSource x:Key="GroupedNotifications" Source="{Binding Controller.NotificationsToday}">
-            <CollectionViewSource.GroupDescriptions>
-                <PropertyGroupDescription PropertyName="PartOfDay" />
-            </CollectionViewSource.GroupDescriptions>
-        </CollectionViewSource>-->
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    </Window.Resources>
 
     <Grid>
         <Grid>
@@ -61,7 +53,7 @@
                                    RenderOptions.EdgeMode="Aliased"></Image>
                         </Button>
 
-                        <TextBlock Grid.Column="1" Text="Add Notification" Style="{StaticResource StyleTitle}"/>
+                        <TextBlock Grid.Column="1" Text="Add Feeling" Style="{StaticResource StyleTitle}"/>
 
                         <!--<Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
                                 Margin="0,0,8,0" Click="Button_Click"
@@ -77,15 +69,36 @@
 
                 <Grid Grid.Row="1">
                     <StackPanel Margin="8">
-                        <Rectangle Fill="#FFB2B2B2" Height="1"/>
-                        <ComboBox Name="ComboBoxDrugs" Margin="0,8,0,0" ItemsSource="{Binding Controller.Drugs}" />
-                        <xctk:DateTimePicker Name="DateTimePicker" Margin="0,8,0,0"/>
-                        <ComboBox Margin="0,8,0,0" >
-                            <ComboBoxItem Name="cbi1">Daily</ComboBoxItem>
-                            <ComboBoxItem Name="cbi2">Weekly</ComboBoxItem>
-                            <ComboBoxItem Name="cbi3">Monthly</ComboBoxItem>
-                        </ComboBox>
-                        <Button Margin="0,8,0,0" Content="Add" Width="120" HorizontalAlignment="Right" Click="ButtonSave_Click"></Button>
+                        <!--<Rectangle Fill="#FFB2B2B2" Height="1"/>-->
+                        <Grid Margin="0,5,0,0">
+                            <TextBlock Text="Title:" HorizontalAlignment="Left"/>
+                            <TextBox Text="{Binding Title, Mode=TwoWay}" 
+                                     Width="200" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="0,5,0,0">
+                            <TextBlock Text="Body:" HorizontalAlignment="Left"/>
+                            <TextBox Text="{Binding Body, Mode=TwoWay}" 
+                                     Width="200" HorizontalAlignment="Right"/>
+                        </Grid>
+
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Style="{StaticResource StyleCheckBoxExcited}" Grid.Column="0" IsChecked="{Binding IsExcitedSelected}" HorizontalAlignment="Center"/>
+                            <CheckBox Style="{StaticResource StyleCheckBoxHappy}" Grid.Column="1" IsChecked="{Binding IsHappySelected}" HorizontalAlignment="Center"/>
+                            <CheckBox Style="{StaticResource StyleCheckBoxNeutral}" Grid.Column="2" IsChecked="{Binding IsNeutralSelected}" HorizontalAlignment="Center"/>
+                            <CheckBox Style="{StaticResource StyleCheckBoxSad}" Grid.Column="3" IsChecked="{Binding IsSadSelected}" HorizontalAlignment="Center"/>
+                            <CheckBox Style="{StaticResource StyleCheckBoxPain}" Grid.Column="4" IsChecked="{Binding IsPainSelected}" HorizontalAlignment="Center"/>
+                        </Grid>
+                        
+                        <Button Margin="0,8,0,0" Content="Add" Width="120" 
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="ButtonSave_Click"></Button>
                     </StackPanel>
                 </Grid>
             </Grid>

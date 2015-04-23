@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Resources/Styles/StyleTitle.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/StyleButtonUi.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/StyleCheckBoxNavigation.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/StyleCheckBoxEmoji.xaml" />
                 <!-- /Styles -->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

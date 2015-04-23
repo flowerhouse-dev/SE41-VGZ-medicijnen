@@ -70,5 +70,12 @@ namespace VgzMedicijnenApp.Views
             Action showViewAddDrug = () => viewAddDrug.Show();
             Dispatcher.BeginInvoke(showViewAddDrug);
         }
+
+        private void AddFeeling_Click(object sender, RoutedEventArgs e)
+        {
+            ViewAddFeeling viewAddFeeling = new ViewAddFeeling(_viewModel);
+            Action showViewAddFeeling = () => viewAddFeeling.Show();
+            Dispatcher.BeginInvoke(showViewAddFeeling);
+        }
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="Utility\NotifyBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Windows\ViewModelAddDrug.cs" />
+    <Compile Include="ViewModels\Windows\ViewModelAddFeeling.cs" />
     <Compile Include="Views\ViewMain.xaml.cs">
       <DependentUpon>ViewMain.xaml</DependentUpon>
     </Compile>
@@ -81,6 +82,9 @@
     </Compile>
     <Compile Include="Views\Windows\ViewAddNotification.xaml.cs">
       <DependentUpon>ViewAddNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ViewAddFeeling.xaml.cs">
+      <DependentUpon>ViewAddFeeling.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ViewAddNotificationFull.xaml.cs">
       <DependentUpon>ViewAddNotificationFull.xaml</DependentUpon>
@@ -144,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\StyleCheckBoxEmoji.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\StyleCheckBoxNavigation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\ViewAddFeeling.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Windows\ViewAddNotificationFull.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +199,13 @@
     <Resource Include="Resources\Images\Emoji\Neutral.png" />
     <Resource Include="Resources\Images\Emoji\Pain.png" />
     <Resource Include="Resources\Images\Emoji\Sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Emoji\Excited_gray.png" />
+    <Resource Include="Resources\Images\Emoji\Happy_gray.png" />
+    <Resource Include="Resources\Images\Emoji\Neutral_gray.png" />
+    <Resource Include="Resources\Images\Emoji\Pain_gray.png" />
+    <Resource Include="Resources\Images\Emoji\Sad_gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

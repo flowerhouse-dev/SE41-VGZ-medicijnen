@@ -377,7 +377,7 @@
                         <TextBlock Grid.Column="1" Text="Feeling" Style="{StaticResource StyleTitle}"/>
 
                         <Button Grid.Column="2" Width="44" HorizontalAlignment="Right"
-                                Margin="0,0,8,0" Click="AddDrug_Click"
+                                Margin="0,0,8,0" Click="AddFeeling_Click"
                                 Style="{StaticResource StyleButtonUi}">
                             <Image Width="25" Height="25" Source="../Resources/Images/Plus-25.png"
                                    RenderOptions.BitmapScalingMode="NearestNeighbor"
