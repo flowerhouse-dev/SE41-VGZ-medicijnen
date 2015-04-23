@@ -34,6 +34,11 @@ namespace VgzMedicijnenApp.Views
             _viewModel.Controller.Drugs.Add(new Drug("Medicijn H", "1 Tablet", "Oraal innemen"));
             _viewModel.Controller.Drugs.Add(new Drug("Medicijn I", "1 Tablet", "Oraal innemen"));
 
+            _viewModel.Controller.Feelings.Add(new Feeling("Wat een dag!", Feeling.Feelings.Excited, "Vandaag heb ik helemaal geen last gehad van pijn! \n Ik denk dat de medicijnen helpen. Ik heb ook.."));
+            _viewModel.Controller.Feelings.Add(new Feeling("Het gaat beter", Feeling.Feelings.Happy, "Al wat minder last gehad van de pijn, hopelijk gaat het morgen beter."));
+            _viewModel.Controller.Feelings.Add(new Feeling("Minder pijn", Feeling.Feelings.Neutral, "De pijn van een paar uur geleden is al aan het minderen."));
+            _viewModel.Controller.Feelings.Add(new Feeling("Auw!", Feeling.Feelings.Pain, "Wat een pijn! ik had gisteren mijn medicijnen gewoon moeten innemen."));
+
             _viewModel.Controller.Notifications.Add(
                 new Notification(
                     new DateTime(2015, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0), 

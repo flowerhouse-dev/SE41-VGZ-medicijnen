@@ -32,6 +32,17 @@ namespace VgzMedicijnenApp.Controllers
             }
         }
 
+        private ObservableCollection<Feeling> _feelings;
+        public ObservableCollection<Feeling> Feelings
+        {
+            get { return _feelings; }
+            set
+            {
+                _feelings = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Notification> _notificationsToday;
         public ObservableCollection<Notification> NotificationsToday
         {
@@ -64,6 +75,7 @@ namespace VgzMedicijnenApp.Controllers
         {
             Notifications = new ObservableCollection<Notification>();
             Drugs = new ObservableCollection<Drug>();
+            Feelings = new ObservableCollection<Feeling>();
         }
     }
 }

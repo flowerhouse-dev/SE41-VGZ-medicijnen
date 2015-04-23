@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Domain\Drug.cs" />
+    <Compile Include="Domain\Feeling.cs" />
     <Compile Include="Domain\Notification.cs" />
     <Compile Include="Resources\Languages\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -179,6 +180,13 @@
     <Resource Include="Resources\Images\High Battery-25.png" />
     <Resource Include="Resources\Images\Lightning Bolt Filled-25.png" />
     <Resource Include="Resources\Images\WiFi Filled-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Emoji\Excited.png" />
+    <Resource Include="Resources\Images\Emoji\Happy.png" />
+    <Resource Include="Resources\Images\Emoji\Neutral.png" />
+    <Resource Include="Resources\Images\Emoji\Pain.png" />
+    <Resource Include="Resources\Images\Emoji\Sad.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
