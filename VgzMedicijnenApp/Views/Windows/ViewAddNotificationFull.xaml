@@ -4,11 +4,11 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="OverviewView" Height="568" Width="320" ResizeMode="NoResize">
     <Window.Resources>
-        <CollectionViewSource x:Key="GroupedNotifications" Source="{Binding Controller.NotificationsToday}">
+        <!--<CollectionViewSource x:Key="GroupedNotifications" Source="{Binding Controller.NotificationsToday}">
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="PartOfDay" />
             </CollectionViewSource.GroupDescriptions>
-        </CollectionViewSource>
+        </CollectionViewSource>-->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
